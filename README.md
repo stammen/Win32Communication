@@ -29,12 +29,18 @@ void MainPage::Launch_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedE
 
 The UWP app launches the LauncherApp Desktop Extension with the following protocol:
 
-"com.stammen.launcherapp:?protocol=com.stammen.win32communication:"
+	"com.stammen.launcherapp:?protocol=com.stammen.win32communication:"
 
 where com.stammen.launcherapp: is the protocol of the LauncherApp and com.stammen.win32communication: is the protocol of the UWP app. The desktop app will use this protocol to return a 
 response to the UWP app.
 
+The Launcher App is a windowless Win32 C++ app that receives the protocol from the UWP app. It then launches the ConsoleApplication1 desktop app sending the UWP app protocol as an argument to the app.
 
+The ConsoleApplication1 then uses the protocol of the UWP app to return data.
+
+com.stammen.win32communication:?response=ConsoleApplication1-Response
+
+The UWP app is activated and parses the query string and displays the data in the window.
 
 ## Requirements
 
