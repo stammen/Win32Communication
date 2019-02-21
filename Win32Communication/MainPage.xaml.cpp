@@ -25,24 +25,24 @@ using namespace Windows::UI::Xaml::Navigation;
 
 MainPage::MainPage()
 {
-	InitializeComponent();
+    InitializeComponent();
 }
 
 void MainPage::HandleProtocolActivation(ProtocolActivatedEventArgs^ args)
 {
-	auto uri = args->Uri;
-	ProtocolResponseText->Text = uri->Query;
+    auto uri = args->Uri;
+    ProtocolResponseText->Text = uri->Query;
 }
 
 
 void MainPage::Launch_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	ProtocolResponseText->Text = L"";
-	Uri^ uri = ref new Uri(L"com.stammen.launcherapp:?protocol=com.stammen.win32communication:");
-	auto task = create_task(Launcher::LaunchUriAsync(uri));
-	task.then([this](bool result)
-	{
+    ProtocolResponseText->Text = L"";
+    Uri^ uri = ref new Uri(L"com.stammen.launcherapp:?protocol=com.stammen.win32communication:");
+    auto task = create_task(Launcher::LaunchUriAsync(uri));
+    task.then([this](bool result)
+    {
 
-	});
+    });
 }
 
