@@ -35,7 +35,7 @@ Update the DESKTOP_APP_PATH define (line 15) in the LauncherApp.cpp file in the 
 
 	"D:\\github\\Win32Communication\\x64\\Debug\\ConsoleApplication1.exe"
 
-Make sure you use \\ for each backslash in your path.
+Make sure you use \\\\ for each backslash in your path.
 
 
 ## Build and run Win32Communication
