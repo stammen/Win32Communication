@@ -14,6 +14,28 @@ The solutions contains the following projects:
 
 * PackagingProject - A Desktop Bridge packaging project to package Win32Communication and LauncherApp into an AppX. Also makes debugging easier. 
 
+When you click on the Launch Win32 App button in the UWP app, the following events take place:
+
+The UWP app launches LauncherApp using the following code:
+
+```c++
+void MainPage::Launch_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	ProtocolResponseText->Text = L"";
+	Uri^ uri = ref new Uri(L"com.stammen.launcherapp:?protocol=com.stammen.win32communication:");
+	auto task = create_task(Launcher::LaunchUriAsync(uri));
+}
+```
+
+The UWP app launches the LauncherApp Desktop Extension with the following protocol:
+
+"com.stammen.launcherapp:?protocol=com.stammen.win32communication:"
+
+where com.stammen.launcherapp: is the protocol of the LauncherApp and com.stammen.win32communication: is the protocol of the UWP app. The desktop app will use this protocol to return a 
+response to the UWP app.
+
+
+
 ## Requirements
 
 * Visual Studio 2017 with the following workloads installed
