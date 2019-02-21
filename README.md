@@ -38,7 +38,7 @@ The Launcher App is a windowless Win32 C++ app that receives the protocol from t
 
 The ConsoleApplication1 then uses the protocol of the UWP app to return data.
 
-com.stammen.win32communication:?response=ConsoleApplication1-Response
+	com.stammen.win32communication:?response=ConsoleApplication1-Response
 
 The UWP app is activated and parses the query string and displays the data in the window.
 
