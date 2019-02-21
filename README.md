@@ -21,8 +21,8 @@ The UWP app launches LauncherApp using the following code:
 ```c++
 void MainPage::Launch_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	Uri^ uri = ref new Uri(L"com.stammen.launcherapp:?protocol=com.stammen.win32communication:");
-	auto task = create_task(Launcher::LaunchUriAsync(uri));
+    Uri^ uri = ref new Uri(L"com.stammen.launcherapp:?protocol=com.stammen.win32communication:");
+    auto task = create_task(Launcher::LaunchUriAsync(uri));
 }
 ```
 
