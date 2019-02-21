@@ -1,19 +1,19 @@
 # UWP to Win32 App Communication without an App Service
 
-MFCStoreClient is an example of how to access Windows Store APIs from a C++ MFC app. The sample demonstrates the following:
+Win32Communication is an example of how to communicate between a UWP app and an external Win32 Desktop app. 
 
-* Detect if your app is running inside of an App Package (required to use the Windows Store APIs)
+Note: This sample is a [Desktop Bridge](https://developer.microsoft.com/en-us/windows/bridges/desktop) app that uses a Desktop Extension to launch the external Win32 Desktop app.
 
-* Detect if your app is running on Windows 10. (required to use the Windows Store APIs)
+The solutions contains the following projects:
 
-* Puts all of the Windows 10 Store code in a DLL that is only loaded if you app meets the above requirements.
+* Win32Communication - the main UWP App
 
-* Demonstrates how to implement a trial version of your app with option to purchase.
+* LauncherApp - the Desktop Extension used by the UWP app to launch the external Win32 Desktop App
 
-* How to use a [Packaging Project](https://docs.microsoft.com/en-us/windows/uwp/porting/desktop-to-uwp-packaging-dot-net) to package your app for the Windows Store
+* ConsoleApplication1 - the external Win32 Desktop App
 
-Note: This sample is based on the Trial App scenario in the [UWP Store Sample](https://github.com/Microsoft/Windows-universal-samples/tree/fe8567faf2efdea3672c2ba642ba7b925ff6467e/Samples/Store) 
-from the [Microsoft Windows Universal Samples](https://github.com/Microsoft/Windows-universal-samples)
+* PackagingProject - A Desktop Bridge packaging project to package Win32Communication and LauncherApp into an AppX. Also makes debugging easier. 
+
 
 ## Requirements
 
@@ -23,15 +23,24 @@ from the [Microsoft Windows Universal Samples](https://github.com/Microsoft/Wind
 	
 ## Setup Instructions
 
-Before running this sample, you must associate it with an app in the Microsoft Store. If you do not, then the Windows Store calls will return errors.
+You will need to configure the path to the ConsoleApplication1.exe after you do a build. ConsoleApplication1.exe should be in
 
-1. [Register as an app developer](https://developer.microsoft.com/store/register).
-2. Follow the instructions in
-[Testing apps that use the Windows.Services.Store namespace](https://msdn.microsoft.com/windows/uwp/monetize/in-app-purchases-and-trials#testing-apps-that-use-the-windows-services-store-namespace).
+	\Win32Communication\<Platform>\<Configuration>\ConsoleApplication1.exe
+	
+For example, if you did a x64/Debug build, it will be in:
 
-## Build and run MFCClient
+	\Win32Communication\x64\Debug\ConsoleApplication1.exe
 
-1. Open MFCClient.sln
+Update the DESKTOP_APP_PATH define (line 15) in the LauncherApp.cpp file in the LauncherApp project to the correct path. You need to specify the full path. For example:
+
+	"D:\\github\\Win32Communication\\x64\\Debug\\ConsoleApplication1.exe"
+
+Make sure you use \\ for each backslash in your path.
+
+
+## Build and run Win32Communication
+
+1. Open Win32Communication.sln
 
 1. Make sure you have selected the x86 or x64 configuration. No not use the AnyCPU configuration.
 
@@ -39,9 +48,9 @@ Before running this sample, you must associate it with an app in the Microsoft S
 
 1. Press F5 to build and run the app.
 
-1. A Win32 MFC Window will appear. You can interact with the app to test the Store Trial/Purchase APIs
+1. A UWP app will appear. Click on the Launch WIn32 App button. The external Win32 app (a console app) will launch and return a value to the UWP app
 
-## Debugging the MFCClient App
+## Debugging the Win32Communication Apps
 
 Since we are using the Packaging project to package and start the MFC app, we need to change the Debug properties of the Packaging project to use the Native Debugger.
 

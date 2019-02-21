@@ -12,6 +12,8 @@ using namespace Windows::System;
 
 #pragma comment(lib, "WindowsApp.lib")
 
+#define DESKTOP_APP_PATH "D:\\github\\Win32Communication\\x64\\Debug\\ConsoleApplication1.exe"
+
 static PROCESS_INFORMATION launchProcess(std::string app, std::wstring arg)
 {
 	// Prepare handles.
@@ -62,8 +64,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	Uri uri(lpCmdLine);
 	auto protocol = uri.QueryParsed().GetFirstValueByName(L"protocol");
 	auto s = protocol.c_str();
-	std::string app("D:\\github\\Win32Communication\\x64\\Debug\\ConsoleApplication1.exe");
-	PROCESS_INFORMATION pi = launchProcess(app, protocol.c_str());
+	PROCESS_INFORMATION pi = launchProcess(DESKTOP_APP_PATH, protocol.c_str());
 
 	// Close process and thread handles. 
 	CloseHandle(pi.hProcess);
