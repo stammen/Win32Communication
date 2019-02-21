@@ -1,4 +1,4 @@
-# UWP to Win32 App Communication without an App Service
+# UWP to Win32 Desktop App Communication without an App Service
 
 Win32Communication is an example of how to communicate between a UWP app and an external Win32 Desktop app. 
 
